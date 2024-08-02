@@ -1,0 +1,15 @@
+﻿@model TheBookTreasure.Models.Library
+
+<h2>@Model.LibraryName</h2>
+<p>@Model.Genre</p>
+
+<h3>מדפים:</h3>
+<ul>
+    @foreach (var shelf in Model.Shelfs)
+    {
+        <li>גובה: @shelf.Height ס"מ, רוחב: @shelf.Width ס"מ</li>
+    }
+</ul>
+
+<a class="btn btn-primary" href="@Url.Action("Index" , "Shelfes" , new{libraryId = Model.Id})">למדפי הספריה</a>
+<a class="btn btn-primary" href="@Url.Action("Index")">חזרה לרשימה</a>

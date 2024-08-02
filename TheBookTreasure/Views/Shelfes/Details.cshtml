@@ -1,0 +1,60 @@
+﻿@model TheBookTreasure.Models.Shelf
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="bg-danger">@TempData["msg"]</div>
+
+<h1>Details</h1>
+
+<div>
+    <h4>Shelf</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Width)
+        </dd>
+        <dt class="col-sm-2">
+            רוחב פנוי:  @ViewData["freeWidth"] ס"מ
+        </dt>        
+        <h3>ספרים של המדף:</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>שם הספר</th>
+                    <th>גובה</th>
+                    <th>עובי</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model.Books)
+                {
+                    <tr>
+                        <td>@book.NameOfBook</td>
+                        <td>@book.Height</td>
+                        <td>@book.Thickness</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" href="@Url.Action("Index" , "Shelfes" , new{libraryId = ViewData["libraryId"]})">לרשימת המדפים</a>
+
+</div>

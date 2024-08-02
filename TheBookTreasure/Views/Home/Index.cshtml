@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+}
+<div>@TempData["msg"]</div>
+
+<div class="text-center">
+    <h1 class="display-4">ברוכים הבאים לאוצר הספרים</h1>
+    <a class="btn btn-primary m-5" asp-area="" asp-controller="Librarys" asp-action="Index">מעבר לספריות</a>
+    <a class="btn btn-primary m-5" asp-area="" asp-controller="Books" asp-action="Create">הוסף ספר חדש</a>
+    <a class="btn btn-primary m-5" asp-area="" asp-controller="Books" asp-action="CreateBookSet">הוסף סט ספרים</a>
+
+</div>

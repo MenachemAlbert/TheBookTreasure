@@ -1,0 +1,67 @@
+﻿@model List<TheBookTreasure.Models.Book>
+
+@{
+    ViewData["Title"] = "Create Book Set";
+    var genres = (SelectList)ViewData["genres"];
+
+}
+
+<h1>יצירת סט ספרים </h1>
+
+<div>@TempData["msg"]</div>
+
+<form id="bookSetForm" asp-action="CreateBookSet" method="post">
+    <div id="container">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="book">
+                <h4>ספר @(i + 1)</h4>
+                <div class="form-group">
+                    <label for="Books[0].GenreId" class="control-label">זאנר</label>
+                    <select name="Books[0].GenreId" class="form-control" asp-items="genres"></select>
+                </div>
+                <div class="form-group">
+                    <label for="Books[@i].NameOfBook">שם הספר</label>
+                    <input name="Books[@i].NameOfBook" class="form-control" value="@Model[i].NameOfBook" />
+                </div>
+                <div class="form-group">
+                    <label for="Books[@i].Height">גובה</label>
+                    <input name="Books[@i].Height" class="form-control" value="@Model[i].Height" />
+                </div>
+                <div class="form-group">
+                    <label for="Books[@i].Thickness">עובי</label>
+                    <input name="Books[@i].Thickness" class="form-control" value="@Model[i].Thickness" />
+                </div>
+            </div>
+        }
+    </div>
+
+    <button class="btn btn-primary"  type="button" onclick="addBook()">הוסף ספר לסט</button>
+    <button type="submit" class="btn btn-primary">הוספת הסט</button>
+</form>
+
+<script>
+    let bookCount = @Model.Count;
+    function addBook() {
+        bookCount++;
+        const newBook = document.createElement("div");
+        newBook.classList.add("book");
+        newBook.innerHTML = `
+                <h4>Book ${bookCount}</h4>
+                <div class="form-group">
+                    <label for="Books[${bookCount - 1}].NameOfBook">שם הספר</label>
+                    <input name="Books[${bookCount - 1}].NameOfBook" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Books[${bookCount - 1}].Height">גובה</label>
+                    <input name="Books[${bookCount - 1}].Height" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Books[${bookCount - 1}].Thickness">עובי</label>
+                    <input name="Books[${bookCount - 1}].Thickness" class="form-control" />
+                </div>
+            `;
+        const container = document.getElementById("container");
+        container.appendChild(newBook);
+    }
+</script>
